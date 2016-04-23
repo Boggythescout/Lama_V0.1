@@ -7,15 +7,10 @@ var Reg = mongoose.model('registration');
 
 module.exports.displayAllRegistrations = function (req, res) {
     Reg
-        .find({name:'*'})
+        .find()
         .exec(
-            function (err, registration) {
-            var response;
-            response = {
-                name: registration.name
-            };
-
-                helper.sendJsonResponse(res, 200, response);
+            function (err, registration){
+                helper.sendJsonResponse(res, 200, registration);
             }
 
         )
