@@ -7,7 +7,7 @@ var Reg = mongoose.model('registration');
 
 module.exports.displayAllRegistrations = function (req, res) {
     Reg
-        .find()
+        .find(true)
         .exec(
             function (err, registration) {
             var response;
