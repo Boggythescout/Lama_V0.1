@@ -8,12 +8,11 @@ var Reg = mongoose.model('registration');
 module.exports.displayAllRegistrations = function (req, res) {
     Reg
         .find()
-        .select()
         .exec(
             function (err, registration) {
             var response;
             response = {
-                name: registrations.name
+                name: registration.name
             };
 
                 helper.sendJsonResponse(res, 200, response);
