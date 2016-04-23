@@ -1,12 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var ctrlLocations = require('../controllers/locations');
+var ctrlRegistration = require('../controllers/registrations');
 var ctrlOthers = require('../controllers/others');
 
-/* Locations pages */
-router.get('/', ctrlLocations.homelist);
-router.get('/location', ctrlLocations.locationInfo);
-router.get('/location/review/new', ctrlLocations.addReview);
+
+//Registration
+router.get('/registration', ctrlRegistration.displayAllRegistrations);
+router.get('/registration/:registrationid', ctrlRegistration.displayRegistration);
+
+router.post('/registration', ctrlRegistration.createRegistration);
+
+router.put('/registration/:registrationid', ctrlRegistration.updateRegistration);
+
+router.delete('/registration/:registrationid', ctrlRegistration.deleteRegistration);
 
 /* Other pages */
 router.get('/about', ctrlOthers.about);
