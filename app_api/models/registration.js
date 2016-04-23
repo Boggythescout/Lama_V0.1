@@ -16,6 +16,7 @@ var groupSchema = new mongoose.Schema({
 
 //Eine Registration ist eine Anmeldung ob das ein Stamm mit 4 Stufen + freien Leitern oder eine einzelne Person ist
 var registrationSchema = new mongoose.Schema ({
+    name: String,
     first_leader: {type: Schema.Types.ObjectId, ref: 'person'},
     groups:[{type: Schema.Types.ObjectId, ref:'group'}],
     members: [{type: Schema.Types.ObjectId, ref: 'person'}]

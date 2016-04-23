@@ -9,7 +9,7 @@ router.get('/registration', ctrlRegistration.displayAllRegistrations);
 
 router.get('/registration/:registrationid', ctrlRegistration.displayRegistration);
 
-router.post('/registration', ctrlRegistration.createRegistration);
+router.post('/registration', ctrlRegistration.createRegistration );
 
 router.put('/registration/:registrationid', ctrlRegistration.updateRegistration);
 
