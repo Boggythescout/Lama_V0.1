@@ -27,7 +27,17 @@ module.exports.displayRegistration = function (req, res) {
 };
 
 module.exports.createRegistration = function (req, res) {
-  sendJsonResponse(res, 200, {"status": "success"});
+    Reg.create(
+        {name: req.body.name}
+        ,
+        function (err, registration){
+            if (err){
+                helper.sendJsonResponse(res, 400, err);
+            }else{
+                helper.sendJsonResponse(res, 201, registration);
+            }
+        }
+    );
 };
 
 module.exports.updateRegistration = function (req, res) {
