@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ctrlRegistration = require('../controllers/registrations');
-
+var ctrlAuth = require('../controllers/authentication');
 
 
 //Registration
@@ -15,5 +15,9 @@ router.put('/registration/:registrationid', ctrlRegistration.updateRegistration)
 
 router.delete('/registration/:registrationid', ctrlRegistration.deleteRegistration);
 
+//Login
+router.post('/register', ctrlAuth.register);
+
+router.post('/login', ctrlAuth.login);
 
 module.exports = router;

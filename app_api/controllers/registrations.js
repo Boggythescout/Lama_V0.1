@@ -8,6 +8,7 @@ var Reg = mongoose.model('registration');
 module.exports.displayAllRegistrations = function (req, res) {
     Reg
         .find()
+        .select('name -_id')
         .exec(
             function (err, registration){
                 helper.sendJsonResponse(res, 200, registration);
