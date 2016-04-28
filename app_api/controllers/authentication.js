@@ -3,7 +3,9 @@
  */
 var passport = require('passport');
 var mongoose = require('mongoose');
-var person = mongoose.model('person');
+
+var Person = mongoose.model('Person');
+
 var helper = require('./helperfunction');
 
 module.exports.register = function(req, res){

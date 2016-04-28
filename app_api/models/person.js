@@ -4,7 +4,8 @@
 var mongoose= require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
-var ticket = require ('./ticket');
+var ticket = require('./ticket');
+
 
 var personSchema = new mongoose.Schema ({
     email: {
@@ -14,8 +15,8 @@ var personSchema = new mongoose.Schema ({
     hash: String,
     salt: String,
     permissions: [String],
-    name: {type: String, required: true},
-    prename: {type: String, required: true},
+    name: String,
+    prename: String,
     ticket: {ticket:ticket},
     city: String,
     plz: String,
@@ -46,4 +47,4 @@ personSchema.methods.generateJwt = function() {
     }, process.env.JWT_SECRET);
 };
 
-mongoose.model('person', personSchema);
+mongoose.model('Person', personSchema);

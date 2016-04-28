@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var ctrlRegistration = require('../controllers/registrations');
+var ctrlRegistration = require('../controllers/enrollment');
 var ctrlAuth = require('../controllers/authentication');
 
 

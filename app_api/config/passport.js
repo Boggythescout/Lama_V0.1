@@ -4,13 +4,13 @@
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
-var person = mongoose.model('person');
+var person = mongoose.model('Person');
 
 passport.use(new localStrategy({
     usernameField: 'email'
     },
     function(username, password, done) {
-        Person.findOne({ email: username }, function (err, person) {
+        person.findOne({ email: username }, function (err, person) {
             if (err) {return done(err);}
             if(!person){
                 return done(null, false, {message: 'Incorrect Username.'});
@@ -18,7 +18,7 @@ passport.use(new localStrategy({
             if (!person.validPassword(password)){
                 return done(null, false, {message: 'Incorrect password.'});
             }
-            return done (null, user);
+            return done (null, person);
         });
     }
-));;
+));

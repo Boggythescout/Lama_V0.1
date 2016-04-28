@@ -59,5 +59,9 @@ process.on('SIGTERM', function(){
 	});
 });
 
+require('./enrollment');
+require('./person');
+require('./ticket');
+
 require('./schemas');
 	

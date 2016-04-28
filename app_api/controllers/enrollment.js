@@ -3,10 +3,10 @@
  */
 var helper = require ('./helperfunction');
 var mongoose = require('mongoose');
-var Reg = mongoose.model('registration');
+var enr = mongoose.model('enrollment');
 
 module.exports.displayAllRegistrations = function (req, res) {
-    Reg
+    enr
         .find()
         .select('name -_id')
         .exec(
@@ -22,7 +22,7 @@ module.exports.displayRegistration = function (req, res) {
 };
 
 module.exports.createRegistration = function (req, res) {
-    Reg.create(
+    enr.create(
         {name: req.body.name}
         ,
         function (err, registration){
