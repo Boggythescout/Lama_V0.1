@@ -10,10 +10,26 @@ module.exports.displayAllEnrollments = function (req, res) {
         .find()
         .select('name -_id')
         .exec(
-            function (err, registration){
-                helper.sendJsonResponse(res, 200, enr);
+            function(err, enr){
+                var response;
+                if (!enr){
+                    helper.sendJsonResponse(res, 404, {"message": "No enrollments found"});
+                    return;
+                }else if (err) {
+                    sendJsonResponse(res, 400, err);
+                    return;
+                }
+                if (enr) {
+                    if (enr.length === 0){
+                        response={
+                            alert: "No enrollments available"
+                        };
+                        helper.sendJsonResponse(res, 200, response);
+                    }else{
+                        helper.sendJsonResponse(res, 200, enr);
+                    }
+                }
             }
-
         )
 };
 
@@ -23,8 +39,7 @@ module.exports.displayEnrollment = function (req, res) {
 
 module.exports.createEnrollment = function (req, res) {
     enr.create(
-        {name: req.body.name}
-        ,
+        {name: req.body.name},
         function (err, enrollment){
             if (err){
                 helper.sendJsonResponse(res, 400, err);
