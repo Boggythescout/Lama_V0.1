@@ -1,19 +1,27 @@
 var express = require('express');
 var router = express.Router();
-var ctrlRegistration = require('../controllers/enrollment');
+var jwt= require('express-jwt');
+var auth= jwt({
+    secret: process.env.JWT_Secret,
+    userProperty:'payload'
+});
+
+
+
+var ctrlEnrollment = require('../controllers/enrollment');
 var ctrlAuth = require('../controllers/authentication');
 
 
 //Registration
-router.get('/registration', ctrlRegistration.displayAllRegistrations);
+router.get('/enrollment', auth, ctrlEnrollment.displayAllEnrollments);
 
-router.get('/registration/:registrationid', ctrlRegistration.displayRegistration);
+router.get('/enrollment/:enrollmentid', auth ,ctrlEnrollment.displayEnrollment);
 
-router.post('/registration', ctrlRegistration.createRegistration );
+router.post('/enrollment', auth, ctrlEnrollment.createEnrollment);
 
-router.put('/registration/:registrationid', ctrlRegistration.updateRegistration);
+router.put('/enrollment/:enrollemntid', auth, ctrlEnrollment.updateEnrollment);
 
-router.delete('/registration/:registrationid', ctrlRegistration.deleteRegistration);
+router.delete('/enrollment/:enrollmentid', auth, ctrlEnrollment.deleteEnrollment);
 
 //Login
 router.post('/register', ctrlAuth.register);
