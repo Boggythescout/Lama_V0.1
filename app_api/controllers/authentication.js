@@ -9,6 +9,8 @@ var Person = mongoose.model('Person');
 var helper = require('./helperfunction');
 
 module.exports.register = function(req, res){
+
+
     if(!req.body.name || !req.body.email || !req.body.password) {
         helper.sendJsonResponse(res, 400, {"message": "All fields required"});
         return;
@@ -31,6 +33,7 @@ module.exports.register = function(req, res){
         }
     });
 };
+
 
 module.exports.login = function(req, res){
     if(!req.body.email || !req.body.password){
@@ -55,3 +58,6 @@ module.exports.login = function(req, res){
         
         })(req,res);
 };
+
+
+
