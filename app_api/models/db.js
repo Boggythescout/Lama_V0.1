@@ -16,7 +16,7 @@ var dbURI="";
 if (process.env.NODE_ENV === 'test') {
 	dbURI = 'mongodb://localhost/test';
 }else if (process.env.NODE_ENV === 'production'){
-	dbURI=process.env.MONGOLAB_URI;
+	dbURI= process.env.MONGOLAB_URI;
 }else{
 	dbURI='mongodb://localhost/Lama';
 }
