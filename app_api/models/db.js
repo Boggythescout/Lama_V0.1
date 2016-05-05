@@ -13,12 +13,12 @@ config.mongoURI={
  */
 
 var dbURI="";
-if (process.env.NODE_ENV === 'test') {
-	dbURI = 'mongodb://localhost/test';
+if (process.env.NODE_ENV === 'production') {
+	dbURI= process.env.MONGOLAB_URI;
 }else if (process.env.NODE_ENV === 'development'){
 	dbURI='mongodb://localhost/Lama';
 }else{
-	dbURI= process.env.MONGOLAB_URI;
+	dbURI = 'mongodb://localhost/test';
 }
 
 
