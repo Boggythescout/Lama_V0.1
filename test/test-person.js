@@ -2,7 +2,7 @@
  * Created by lukas on 04.05.2016.
  */
 
-
+process.env.NODE_ENV='test';
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
