@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var readline = require("readline");
 
 /*if (process.env.NODE_ENV === 'production') {
 	dbURI= process.env.MONGOLAB_URI;
@@ -16,15 +17,27 @@ var dbURI="";
 if (process.env.NODE_ENV === 'production') {
 	dbURI= process.env.MONGOLAB_URI;
 }else if (process.env.NODE_ENV === 'development'){
-	dbURI='mongodb://localhost/Lama';
+	dbURI='mongodb://localhost/lama';
 }else{
-	dbURI = 'mongodb://localhost/test';
+	dbURI='mongodb://localhost/test';
 }
 
-
-var readline = require("readline");
-
 mongoose.connect(dbURI);
+
+
+
+mongoose.connection.on('connected', function(){
+	console.log('Mongoose connected to '+ dbURI);
+});
+
+mongoose.connection.on('error', function(err){
+	console.log('Mongoose connection error '+ dbURI + err);
+});
+
+mongoose.connection.on('disconnected', function(){
+	console.log('Mongoose disconnected');
+});
+
 
 if (process.platform === "win32"){
 	var rl=readline.createInterface({
@@ -35,21 +48,6 @@ if (process.platform === "win32"){
 		process.emit ("SIGINT");
 	});
 }
-
-mongoose.connection.on('connected', function(){
-	console.log('Mongoose connected to '+ dbURI);
-});
-
-mongoose.connection.on('error', function(){
-	console.log('Mongoose connection error '+ dbURI);
-});
-
-mongoose.connection.on('disconnected', function(){
-	console.log('Mongoose disconnected');
-});
-
-
-
 
 
 var gracefulShutdown = function (msg, callback) {
@@ -80,6 +78,5 @@ process.on('SIGTERM', function(){
 require('./enrollment');
 require('./person');
 require('./ticket');
-
 require('./schemas');
 	

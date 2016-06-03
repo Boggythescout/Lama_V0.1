@@ -7,7 +7,7 @@ var Person = mongoose.model('Person');
 
 var helper = require('./helperfunction');
 
-module.exports.getAllPersons = function(req, res){
+module.exports.listAllPersons = function(req, res){
     Person.find({}, function(err, person){
         if (err){
             helper.sendJsonResponse(res, 400, err);
